@@ -10,7 +10,7 @@ finish-args:
   - --socket=wayland
   - --socket=ssh-auth
   - --device=dri
-  - --filesystem=~/.ssh:ro
+  - --filesystem=~/.ssh:rw
 
 cleanup:
   - '/include'
@@ -67,5 +67,6 @@ modules:
         url: "https://github.com/mfat/sshpilot.git"
         #tag: v4.2.0
         commit: e2d31effef0ce0e0c8d2a4c3a9b0c009a81d49c1
+
       - type: file
         path: sshpilot-launcher.sh
