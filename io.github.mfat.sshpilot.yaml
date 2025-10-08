@@ -12,6 +12,7 @@ finish-args:
   - --device=dri
   - --filesystem=~/.ssh:rw
   - --talk-name=org.freedesktop.Flatpak
+  
 cleanup:
   - '/include'
   - '/lib/pkgconfig'
@@ -65,7 +66,7 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v4.3.0
-        commit: 496059c7cb9668c9d5db5e70c7d0a6ef45018177
+        #tag: v4.3.2
+        commit: fcb085c9fdb83a21d7c992196e11e1d1d0a900e8
       - type: file
         path: sshpilot-launcher.sh
