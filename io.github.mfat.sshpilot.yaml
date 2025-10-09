@@ -12,7 +12,7 @@ finish-args:
   - --device=dri
   - --filesystem=~/.ssh:rw
   - --talk-name=org.freedesktop.Flatpak
-  
+
 cleanup:
   - '/include'
   - '/lib/pkgconfig'
@@ -60,14 +60,15 @@ modules:
     build-commands:
       - pip3 install --verbose --exists-action=i --no-build-isolation --no-deps --prefix=${FLATPAK_DEST} .
       - install -Dm755 sshpilot-launcher.sh /app/bin/sshpilot
+      - install -Dm755 sshpilot-agent /app/bin/sshpilot-agent
       - install -Dm644 sshpilot/resources/sshpilot.svg /app/share/icons/hicolor/scalable/apps/io.github.mfat.sshpilot.svg
       - install -Dm644 io.github.mfat.sshpilot.desktop /app/share/applications/io.github.mfat.sshpilot.desktop
       - install -Dm644 io.github.mfat.sshpilot.metainfo.xml /app/share/metainfo/io.github.mfat.sshpilot.metainfo.xml
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v4.3.2
-        commit: fcb085c9fdb83a21d7c992196e11e1d1d0a900e8
+        #tag: v4.3.3
+        commit: 032990b15553d6a220e6f8604f17628415084549
 
       - type: file
         path: sshpilot-launcher.sh
