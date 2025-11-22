@@ -67,8 +67,8 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v4.4.1
-        commit: b8f0d1e3d9cb3d8963badfdc8334b946842f0a03
+        #tag: v4.4.4
+        commit: a2f2ab5694d17df4ae4c6b501cbff96219b8d5b8
 
 
       - type: file
