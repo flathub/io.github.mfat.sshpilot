@@ -62,15 +62,21 @@ modules:
       # Ensure vendored pyxtermjs module is installed (pip --no-build-isolation may not include it)
       - |
         VENDOR_DEST=${FLATPAK_DEST}/lib/python3.*/site-packages/sshpilot/vendor
-        if [ ! -d "$(ls -d ${VENDOR_DEST} 2>/dev/null | head -1)/pyxtermjs" ]; then
-          echo "Vendored pyxtermjs not found, installing manually..."
-          VENDOR_PATH=$(ls -d ${VENDOR_DEST} 2>/dev/null | head -1)
-          if [ -n "$VENDOR_PATH" ]; then
-            mkdir -p "${VENDOR_PATH}/pyxtermjs"
-            cp -a sshpilot/vendor/pyxtermjs/*.py "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
-            cp -a sshpilot/vendor/pyxtermjs/*.html "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
-            cp -a sshpilot/vendor/pyxtermjs/LICENSE "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+        VENDOR_PATH=$(ls -d ${VENDOR_DEST} 2>/dev/null | head -1)
+        if [ -n "$VENDOR_PATH" ]; then
+          echo "Installing vendored pyxtermjs to ${VENDOR_PATH}/pyxtermjs"
+          mkdir -p "${VENDOR_PATH}/pyxtermjs"
+          cp -a sshpilot/vendor/pyxtermjs/*.py "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+          cp -a sshpilot/vendor/pyxtermjs/*.html "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+          cp -a sshpilot/vendor/pyxtermjs/LICENSE "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+          # Verify installation
+          if [ -f "${VENDOR_PATH}/pyxtermjs/__init__.py" ] && [ -f "${VENDOR_PATH}/pyxtermjs/app.py" ]; then
+            echo "Vendored pyxtermjs installed successfully"
+          else
+            echo "WARNING: Vendored pyxtermjs files may be missing"
           fi
+        else
+          echo "ERROR: Could not find vendor directory"
         fi
       - install -Dm755 sshpilot-launcher.sh /app/bin/sshpilot
       - install -Dm755 sshpilot-agent /app/bin/sshpilot-agent
