@@ -59,6 +59,25 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-build-isolation --no-deps --prefix=${FLATPAK_DEST} .
+      # Ensure vendored pyxtermjs module is installed (pip --no-build-isolation may not include it)
+      - |
+        VENDOR_DEST=${FLATPAK_DEST}/lib/python3.*/site-packages/sshpilot/vendor
+        VENDOR_PATH=$(ls -d ${VENDOR_DEST} 2>/dev/null | head -1)
+        if [ -n "$VENDOR_PATH" ]; then
+          echo "Installing vendored pyxtermjs to ${VENDOR_PATH}/pyxtermjs"
+          mkdir -p "${VENDOR_PATH}/pyxtermjs"
+          cp -a sshpilot/vendor/pyxtermjs/*.py "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+          cp -a sshpilot/vendor/pyxtermjs/*.html "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+          cp -a sshpilot/vendor/pyxtermjs/LICENSE "${VENDOR_PATH}/pyxtermjs/" 2>/dev/null || true
+          # Verify installation
+          if [ -f "${VENDOR_PATH}/pyxtermjs/__init__.py" ] && [ -f "${VENDOR_PATH}/pyxtermjs/app.py" ]; then
+            echo "Vendored pyxtermjs installed successfully"
+          else
+            echo "WARNING: Vendored pyxtermjs files may be missing"
+          fi
+        else
+          echo "ERROR: Could not find vendor directory"
+        fi
       - install -Dm755 sshpilot-launcher.sh /app/bin/sshpilot
       - install -Dm755 sshpilot-agent /app/bin/sshpilot-agent
       - install -Dm644 sshpilot/resources/sshpilot.svg /app/share/icons/hicolor/scalable/apps/io.github.mfat.sshpilot.svg
@@ -67,8 +86,8 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v4.6.5
-        commit: 784f559aa1175bcb798919496cc694cd2488e9e3
+        #tag: v4.7.1
+        commit: 801a8ced1a1028f5007f67e2809f66cc8d8c2e63
 
 
       - type: file
