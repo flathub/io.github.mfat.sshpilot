@@ -10,7 +10,7 @@ finish-args:
   - --socket=wayland
   - --socket=ssh-auth
   - --device=dri
-  - --filesystem=~/.ssh:rw
+  - --filesystem=~/.ssh:create
   - --talk-name=org.freedesktop.Flatpak
 
 cleanup:
@@ -67,8 +67,8 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v4.7.8
-        commit: 19004da2c399cce1b251891bba4da9d0313d03f0
+        #tag: v4.7.9
+        commit: 09ff7fc37f7261736ad3e11c8eb848de390e37c6
 
 
       - type: file
