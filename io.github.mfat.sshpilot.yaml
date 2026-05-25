@@ -1,6 +1,6 @@
 app-id: io.github.mfat.sshpilot
 runtime: org.gnome.Platform
-runtime-version: '49'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: sshpilot
 finish-args:
@@ -67,8 +67,8 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v4.8.2
-        commit: cb759c2efb40b36cae2c1388a28429435f645569
+        #tag: v4.8.3
+        commit: 0ccbab7b05d69efce7b441f6300a59d74bab8943
 
 
       - type: file
