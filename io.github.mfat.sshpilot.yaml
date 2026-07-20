@@ -56,20 +56,9 @@ modules:
   - python3-deps.yml
 
   - name: sshpilot
-    buildsystem: simple
-    build-commands:
-      - pip3 install --verbose --exists-action=i --no-build-isolation --no-deps --prefix=${FLATPAK_DEST} .
-      - install -Dm755 sshpilot-launcher.sh /app/bin/sshpilot
-      - install -Dm755 sshpilot-agent /app/bin/sshpilot-agent
-      - install -Dm644 sshpilot/resources/sshpilot.svg /app/share/icons/hicolor/scalable/apps/io.github.mfat.sshpilot.svg
-      - install -Dm644 io.github.mfat.sshpilot.desktop /app/share/applications/io.github.mfat.sshpilot.desktop
-      - install -Dm644 io.github.mfat.sshpilot.metainfo.xml /app/share/metainfo/io.github.mfat.sshpilot.metainfo.xml
+    buildsystem: meson
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
         #tag: v5.5.7
-        commit: 97917355e7fb2254e4c38c694b48ce7b399e7090
-
-
-      - type: file
-        path: sshpilot-launcher.sh
+        commit: 9eb1ac919cda89f55c60374069d39636151cd728
