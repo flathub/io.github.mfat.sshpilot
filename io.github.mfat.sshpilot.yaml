@@ -3,6 +3,7 @@ runtime: org.gnome.Platform
 runtime-version: '50'
 sdk: org.gnome.Sdk
 command: sshpilot
+separate-locales: false
 finish-args:
   - --share=network
   - --share=ipc
@@ -60,5 +61,5 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v5.5.7
-        commit: 9eb1ac919cda89f55c60374069d39636151cd728
+        #tag: v5.6.0
+        commit: 4722a12852bb241c62bc02a14529f2b56b3ce815
