@@ -61,5 +61,5 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v5.8.8
-        commit: 2e8de74268e0f4b9129bceb1c893936318634a0d
+        #tag: v5.8.8 - test tmux
+        commit: 20c13f8863aa3650d03b8c4098e853022bacc76d
