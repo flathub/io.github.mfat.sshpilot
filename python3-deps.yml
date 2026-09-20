@@ -148,7 +148,11 @@ modules:
   - name: python3-lxml
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "lxml==6.1.1" --no-build-isolation --no-deps
+      # --ignore-installed: the Sdk ships its own lxml (6.1.3 in GNOME 50), so
+      # without this pip tries to uninstall it from the read-only /usr before
+      # installing ours and the build fails. The Platform has no lxml, so the
+      # module must still be built -- pykeepass needs it at runtime.
+      - pip3 install --verbose --exists-action=i --ignore-installed --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "lxml==6.1.1" --no-build-isolation --no-deps
     sources:
       - type: file
         url: https://files.pythonhosted.org/packages/6b/55/a0c72851dfee5ecc689f949723a73dea457758912542cb955b108eaf0d8f/lxml-6.1.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
