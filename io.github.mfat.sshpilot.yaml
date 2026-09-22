@@ -133,5 +133,5 @@ modules:
     sources:
       - type: git
         url: "https://github.com/mfat/sshpilot.git"
-        #tag: v6.1.9
-        commit: 4bae64b22ee23e5d79780eff7e1d57b789c2f694
+        #tag: test fix for terminal resize issue
+        commit: 0727034423c6a5d08c895cdacce076506b7f63fb
