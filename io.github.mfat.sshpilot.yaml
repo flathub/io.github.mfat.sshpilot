@@ -18,10 +18,10 @@ finish-args:
   - --device=all
 
 cleanup:
-  - '/include'
-  - '/lib/pkgconfig'
-  - '/share/gtk-doc'
-  - '/share/man'
+  - /include
+  - /lib/pkgconfig
+  - /share/gtk-doc
+  - /share/man
   - '*.la'
   - '*.a'
 
@@ -108,22 +108,22 @@ modules:
   - name: ssh-copy-id
     buildsystem: simple
     build-commands:
-    - install -Dm755 ssh-copy-id /app/bin/ssh-copy-id
+      - install -Dm755 ssh-copy-id /app/bin/ssh-copy-id
     sources:
-    - type: file
-      url: https://raw.githubusercontent.com/openssh/openssh-portable/V_9_6_P1/contrib/ssh-copy-id
-      sha256: b625120eeff8b0e64e4e8c71e5ed3a7878fd69d318a88ce0a22e115725f6b815
-      dest-filename: ssh-copy-id
+      - type: file
+        url: https://raw.githubusercontent.com/openssh/openssh-portable/V_9_6_P1/contrib/ssh-copy-id
+        sha256: b625120eeff8b0e64e4e8c71e5ed3a7878fd69d318a88ce0a22e115725f6b815
+        dest-filename: ssh-copy-id
 
   - name: libvte
     buildsystem: meson
     config-opts:
-      - '-Dvapi=false'
-      - '-Dgir=true'
-      - '-Ddocs=false'
-      - '-Dgnutls=true'
-      - '-Dgtk3=false'
-      - '-Dgtk4=true'
+      - -Dvapi=false
+      - -Dgir=true
+      - -Ddocs=false
+      - -Dgnutls=true
+      - -Dgtk3=false
+      - -Dgtk4=true
     sources:
       - type: archive
         url: https://download.gnome.org/sources/vte/0.84/vte-0.84.1.tar.xz
@@ -159,8 +159,8 @@ modules:
       - /share/FreeRDP
     sources:
       - type: archive
-        url: https://pub.freerdp.com/releases/freerdp-3.32.1.tar.xz
-        sha256: 4dd5bf474deff7a2a82dff7edca4ea0a608da376a9698514901feab3637711e8
+        url: https://pub.freerdp.com/releases/freerdp-3.33.0.tar.xz
+        sha256: 9cea38e972e3775e1ce83b30e9ae0cbf8d00af1c708c640e6244fc81bdb1e08b
         x-checker-data:
           type: anitya
           project-id: 10442
@@ -177,6 +177,6 @@ modules:
     buildsystem: meson
     sources:
       - type: git
-        url: "https://github.com/mfat/sshpilot.git"
+        url: https://github.com/mfat/sshpilot.git
         #tag: v6.3.9
         commit: f07252c94f03d6885d855e8195598a59e5b32e6c
