@@ -159,8 +159,8 @@ modules:
       - /share/FreeRDP
     sources:
       - type: archive
-        url: https://pub.freerdp.com/releases/freerdp-3.32.1.tar.xz
-        sha256: 4dd5bf474deff7a2a82dff7edca4ea0a608da376a9698514901feab3637711e8
+        url: https://pub.freerdp.com/releases/freerdp-3.33.1.tar.xz
+        sha256: 0248c0d70cba3c2d2e1203eefff39c1bda369518d4cd1006c074461a9b9f7c49
         x-checker-data:
           type: anitya
           project-id: 10442
